@@ -35,9 +35,12 @@ class Deck:
         return self.hand
     
     def score(self):
-        card_list = [x[-1] for x in self.hand]
+        list = [x[-1] for x in self.hand]
+        letter_list = [''.join(filter(lambda ch: not ch.isdigit(), i)) for i in list]
+        integer_list= [int(i) for i in list if i.isdigit()]
 
 
 deck = Deck()
 deck.double()
 deck.single()
+print(deck.score())
