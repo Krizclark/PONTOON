@@ -13,6 +13,3 @@ class Player:
 player = Player(None)
 dealer = Player("Dealer",1000)
 
-print(f"The Players fund is £{player.funds} and The Dealers fund is £{dealer.funds}")
-player.give(dealer,50)
-print(f"The Players fund is £{player.funds} and The Dealers fund is £{dealer.funds}")
