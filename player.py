@@ -4,12 +4,13 @@ class Player:
         self.funds = funds
         self.bid = bid
 
+    def add_name(self,name):
+        if name:
+            self.name = name
+
     def give(self,recipient,ante):
         if self.funds >= ante:
             recipient.funds += ante
             self.funds -= ante
 
-
-player = Player(None)
-dealer = Player("Dealer",1000)
 

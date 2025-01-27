@@ -60,9 +60,3 @@ class Deck:
         else:
             self.score_result = sub_total
         return self.score_result
-
-
-deck = Deck()
-deck.double()
-deck.single()
-print(deck.score())
