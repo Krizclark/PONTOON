@@ -40,7 +40,6 @@ class Deck:
         letter_list = [''.join(filter(lambda ch: not ch.isdigit(), i)) for i in list]
         integer_list= [int(i) for i in list if i.isdigit()]
         letter_sum = 0
-        print(self.hand)
         for char in letter_list:
             integer_sum= sum(integer_list)
             ace = False
@@ -53,10 +52,12 @@ class Deck:
         sub_total = letter_sum + integer_sum
         
         if ace == True:
-            if (sub_total + 10) <= 22:
+            if (sub_total + 10) < 22:
                 self.score_result = sub_total + 10
             else:
                 self.score_result = sub_total
         else:
             self.score_result = sub_total
         return self.score_result
+
+deck = Deck()
