@@ -52,7 +52,7 @@ class Deck:
         sub_total = letter_sum + integer_sum
         
         if ace == True:
-            if (sub_total + 10) < 22:
+            if (sub_total + 10) <= 21:
                 self.score_result = sub_total + 10
             else:
                 self.score_result = sub_total

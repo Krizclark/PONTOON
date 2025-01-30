@@ -6,7 +6,7 @@ class Player:
 
     def add_name(self,name):
         if name:
-            self.name = name
+            self.name = name.capitalize()
 
     def give(self,recipient,ante):
         if self.funds >= ante:
