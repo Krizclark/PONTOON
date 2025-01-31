@@ -41,9 +41,23 @@ class Logic:
         if not player.name == None:
             deck = Deck()
             time.sleep(1)
-            bid = input("How much would you like to deposit for ante? £")
-            player.bid = int(bid)
-            Logic.bid(player,deck)
+            if not player.funds == 0:
+                bid = input("How much would you like to deposit for ante? £")
+                if player.funds >= int(bid):    
+                    player.bid = int(bid)
+                    Logic.bid(player,deck)
+                    return player.bid
+                else:
+                    print(f"Unfortunately you only have £{player.funds}")
+                    Logic.req_bid(player)
+            else:
+                print("Looks like you lost your cash")
+                time.sleep(1)
+                print(".........")
+                time.sleep(1)
+                print("GAME OVER")
+                time.sleep(1)
+                print(".........")
         else:
             Logic.req_name()  
 
@@ -51,7 +65,6 @@ class Logic:
         time.sleep(1)
         print(f"OK {player.name} you have deposited £{player.bid} to the dealer!")
         player.funds -= player.bid
-        player.bid = 0
         print(f"You now have £{player.funds} remaining... Good Luck!")
         time.sleep(2)
         Logic.play(player,deck)
@@ -93,9 +106,17 @@ class Logic:
             time.sleep(1)
             Logic.req_bid(player)
         else:
-            time.sleep(2)
-            print("Dealers hand......")
-            Logic.dealershand(player,score,deck)
+            if len(deck.hand) >= 5:
+                print("Five Card Trick.....Nicely Played!!")
+                reward = 2*player.bid
+                player.funds += reward
+                player.bid = 0
+                print(f"player funds = {player.funds} as reward was {reward}")
+                Logic.req_bid(player)
+            else:
+                time.sleep(2)
+                print("Dealers hand......")
+                Logic.dealershand(player,score,deck)
     
     def dealershand(player,score,deck):
         dealer = Player(None,funds = 1000)
@@ -115,10 +136,12 @@ class Logic:
                 break
         time.sleep(2)
         if dealers_deck.score() < score:
-            if dealers_deck.score() <= 21:
+            if score <= 21:
                 print(f"Your hand of {score} beats the house's hand of {dealers_deck.score()}")
-                player.funds += (2 * player.bid)
-                print(f"player funds = {player.funds}")
+                reward = 2*player.bid
+                player.funds += reward
+                player.bid = 0
+                print(f"player funds = {player.funds} as reward was {reward}")
                 time.sleep(2)
                 print("Another hand?....")
                 deck.hand = []
@@ -126,20 +149,25 @@ class Logic:
                 dealers_deck.hand = []
                 dealers_deck.score = 0
                 Logic.req_bid(player)
-            else:
+        else:
+            if dealers_deck.score() > 21:    
                 deck.hand = []
                 deck.score = 0
                 dealers_deck.hand = []
                 dealers_deck.score = 0
                 print("Dealers bust!...You win!")
-                player.funds += 2*(player.bid)
+                reward = 2*player.bid
+                player.funds += reward
+                player.bid = 0
+                print(f"player funds = {player.funds} as reward was {reward}")
                 Logic.req_bid(player)
-        else:
-            time.sleep(2)
-            print("House wins....Unlucky!")
-            deck.hand = []
-            deck.score = 0
-            dealers_deck.hand = []
-            dealers_deck.score = 0
-            Logic.req_bid(player)
+            else:
+                time.sleep(2)
+                print("House wins....Unlucky!")
+                deck.hand = []
+                deck.score = 0
+                dealers_deck.hand = []
+                dealers_deck.score = 0
+                print(f"player funds = {player.funds}")
+                Logic.req_bid(player)
     
