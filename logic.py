@@ -2,27 +2,36 @@ from player import *
 from deck import *
 import time
 
+bl = ".............................."
+
 class Logic:
     def welcome(player):
         print("Welome to Lose your cash Casino!")
         time.sleep(1)
+        print(bl)
         Logic.req_name(player)
 
     def req_name(player):
+        time.sleep(1)
         name = input("Please enter name to play: ")
         player.add_name(name)
         time.sleep(1)
+        print(bl)
+        time.sleep(1)
         print(f"OK {player.name} Which game would you like to play!? ")
         time.sleep(1)
+        print("      __________________")
         Logic.req_game(player)
     
     def req_game(player):
         if not player.name == None:
-            print("1.Pontoon")
-            print("2.Poker")
-            print("3.Solataire")
+            print("     |                  |")
+            print("     |    1.Pontoon     |")
+            print("     |    2.Poker       |")
+            print("     |    3.Solataire   |")
+            print("     |__________________|")
             game = input((""))
-            #game = input(f"OK {player.name} Which game would you like to play!? ")
+            print(bl)
             if game.isdigit():
                 if not game == "1":
                     print("Sorry, in development!")
@@ -30,6 +39,7 @@ class Logic:
                 else:
                     time.sleep(1)
                     print(f"OK {player.name} you currently have £{player.funds}")
+                    print(bl)
                     Logic.req_bid(player)
             else:
                 print("Please enter a number from the list!")
