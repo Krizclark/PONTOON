@@ -59,3 +59,4 @@ class Deck:
         else:
             self.score_result = sub_total
         return self.score_result
+
