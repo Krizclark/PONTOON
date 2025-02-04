@@ -1,17 +1,14 @@
 from logic import *
-from deck import *
-
-pack = Deck()
 
 class Card:
-    def __init__(self,A=None,N=None):
+    def __init__(self,card_number,card_suit):
         self = self
-        self.a = A
-        self.n = N
+        self.card_number = card_number
+        self.card_suit = card_suit
 
-    def draw_card(self):
-        n = self.n
-        a = self.a
+    def ilustrate(self,card_number,card_suit):
+        n = card_suit
+        a = card_number
         if n:
             if a: 
                 return  f'''\
@@ -23,17 +20,12 @@ class Card:
                         |      {a}|
                         '-------'
                         '''
-
-                #print(f" _________ ")
-                #print(f"|{self.n}       {self.n}|")
-                #print("|         |")
-                #print(f"|    {self.a}    |")
-                #print(f"|         |")
-                #print(f"|{self.n}_______{self.n}|")
                 
+
+
+
 
 #spacer = ' ' * 5
 #for a, b in zip(a.splitlines(), b.splitlines()):
 #    print(f'{a}{spacer}{b}')
-
-print(pack.double())
+#print(pack.double())

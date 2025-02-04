@@ -1,5 +1,6 @@
 import random
 
+
 cards = ["H2","D2","C2","S2",
          "H3","D3","C3","S3",
          "H4","D4","C4","S4",
@@ -34,7 +35,7 @@ class Deck:
         self.hand.append(second)
         random.shuffle(cards)
         return self.hand
-    
+
     def score(self):
         list = [x[-1] for x in self.hand]
         letter_list = [''.join(filter(lambda ch: not ch.isdigit(), i)) for i in list]
@@ -60,3 +61,4 @@ class Deck:
             self.score_result = sub_total
         return self.score_result
 
+deck = Deck()
