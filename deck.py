@@ -22,13 +22,13 @@ class Deck:
         self.score_result = 0
         random.shuffle(cards)
 
-    def single(self):
+    def single(self) -> "list":
         card = cards.pop(0)
         self.hand.append(card)
         random.shuffle(cards)
         return self.hand
     
-    def double(self):
+    def double(self) -> "list":
         first  = cards.pop(0)
         second = cards.pop(1)
         self.hand.append(first)
@@ -36,7 +36,7 @@ class Deck:
         random.shuffle(cards)
         return self.hand
 
-    def score(self):
+    def score(self) -> "int":
         list = [x[-1] for x in self.hand]
         letter_list = [''.join(filter(lambda ch: not ch.isdigit(), i)) for i in list]
         integer_list= [int(i) for i in list if i.isdigit()]

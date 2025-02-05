@@ -1,10 +1,11 @@
 from player import *
 from deck import *
 import time
-
+from graphical import *
 bl = ".............................."
 
 class Logic:
+
     def welcome(player):
         print("Welome to Lose your cash Casino!")
         time.sleep(1)
