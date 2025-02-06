@@ -3,7 +3,6 @@ from deck import *
 import time
 from graphical import *
 bl = ".............................."
-
 class Logic:
 
     def welcome(player):
@@ -82,9 +81,9 @@ class Logic:
 
     def play(player,deck):
         deck.double()
-        print("....")
         time.sleep(1)    
-        print(f"{deck.hand}   score: {deck.score()}")
+        Graphics(deck.hand) 
+        print(f"current score = {deck.score()}")
         time.sleep(2)
         Logic.loop(player,deck)
         
@@ -94,7 +93,8 @@ class Logic:
             if step.lower() == "t":
                 time.sleep(1)
                 deck.single()
-                print(f"{deck.hand}   score: {deck.score()}")
+                Graphics(deck.hand)
+                print(f"score: {deck.score()}")
                 time.sleep(2)
                 Logic.loop(player,deck)
             elif step.lower() == "s":
@@ -133,14 +133,19 @@ class Logic:
         dealer = Player(None,funds = 1000)
         dealers_deck = Deck()
         print(f"Your current score to be beaten {score}")
-        time.sleep(1)    
-        print(f"{dealers_deck.double()}   score: {dealers_deck.score()}")
+        time.sleep(1) 
+        print(bl)
+        dealers_deck.double()   
+        Graphics(dealers_deck.hand)
+        print(f"score: {dealers_deck.score()}")
         while True:
             time.sleep(1)
             print("....")
             if dealers_deck.score() <= 15:
                 print("Dealer Twists.....")
-                print(f"{dealers_deck.single()}   score: {dealers_deck.score()}")
+                dealers_deck.single()
+                Graphics(dealers_deck.hand)   
+                print(f"score: {dealers_deck.score()}")
             else:
                 print("Dealer Sticks")
                 time.sleep(2)

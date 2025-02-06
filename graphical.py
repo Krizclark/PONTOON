@@ -1,8 +1,6 @@
 from logic import *
 
-
-
-class Card:
+class Graphics:
     def __init__(self,hand):
         self.card_a : str = "default"
         self.card_b : str = "default"
@@ -18,13 +16,12 @@ class Card:
         N = ' '.join(str(e) for e in n) #List in joined and still n
         S = ' '.join(str(e) for e in s) # ""  "" "    "
         card_quantity = len(self.hand)
-        Card.get_print(self,N,S,card_quantity)
+        Graphics.get_print(self,N,S,card_quantity)
     
     def get_print(self,N,S,card_quantity) -> "str": 
         n = 0
         x = -2
         i = card_quantity
-        self.print = ""
         while i != 0:
             x += 2
             a = S[x]

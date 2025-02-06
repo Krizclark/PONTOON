@@ -1,6 +1,5 @@
 import random
 
-
 cards = ["♥2","♦2","♣2","♠2",
          "♥3","♦3","♣3","♠3",
          "♥4","♦4","♣4","♠4",
@@ -61,4 +60,3 @@ class Deck:
             self.score_result = sub_total
         return self.score_result
 
-deck = Deck()
