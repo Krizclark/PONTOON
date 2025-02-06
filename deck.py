@@ -44,7 +44,7 @@ class Deck:
             integer_sum= sum(integer_list)
             ace = False
             if char.isalpha():
-                if char == "a":
+                if char == "A":
                     letter_sum += 1
                     ace = True
                 else:
@@ -52,7 +52,7 @@ class Deck:
         sub_total = letter_sum + integer_sum
         
         if ace == True:
-            if (sub_total + 10) <= 21:
+            if (sub_total + 10) < 22:
                 self.score_result = sub_total + 10
             else:
                 self.score_result = sub_total

@@ -53,6 +53,7 @@ class Logic:
             time.sleep(1)
             if not player.funds == 0:
                 bid = input("How much would you like to deposit for ante? £")
+                print(bl)
                 if player.funds >= int(bid):    
                     player.bid = int(bid)
                     Logic.bid(player,deck)
@@ -76,36 +77,52 @@ class Logic:
         print(f"OK {player.name} you have deposited £{player.bid} to the dealer!")
         player.funds -= player.bid
         print(f"You now have £{player.funds} remaining... Good Luck!")
-        time.sleep(2)
+        time.sleep(1)
         Logic.play(player,deck)
 
     def play(player,deck):
+        print(bl)
+        time.sleep(1)
         deck.double()
         time.sleep(1)    
-        Graphics(deck.hand) 
+        Graphics(deck.hand)
+        time.sleep(1) 
         print(f"current score = {deck.score()}")
-        time.sleep(2)
+        time.sleep(1)
         Logic.loop(player,deck)
-        
-    def loop(player,deck):  
-        step = input("Would you like to (s)Stick or (t)Twist!?...")  
-        if step.isalpha():    
-            if step.lower() == "t":
-                time.sleep(1)
-                deck.single()
-                Graphics(deck.hand)
-                print(f"score: {deck.score()}")
-                time.sleep(2)
-                Logic.loop(player,deck)
-            elif step.lower() == "s":
-                score = int(deck.score())
-                Logic.hold(player,score,deck)
-            elif step.lower() == "e":
-                Logic.req_bid(player)
+        print(bl)
+
+    def loop(player,deck):
+        time.sleep(1)    
+        if deck.score() <= 21:
+            step = input("Would you like to (s)Stick or (t)Twist!?...")
+            if step.isalpha():    
+                if step.lower() == "t":
+                    time.sleep(1)
+                    print(bl)
+                    time.sleep(1)
+                    deck.single()
+                    Graphics(deck.hand)
+                    time.sleep(1)
+                    print(f"score: {deck.score()}")
+                    time.sleep(1)
+                    Logic.loop(player,deck)
+                elif step.lower() == "s":
+                    score = int(deck.score())
+                    Logic.hold(player,score,deck)
+                elif step.lower() == "e":
+                    Logic.req_bid(player)
+                else:
+                    print("Please pick either (s)tick or t(wist)")
             else:
                 print("Please pick either (s)tick or t(wist)")
         else:
-            print("Please pick either (s)tick or t(wist)")
+            print("Opps!! You've gone and bust!")
+            time.sleep(1)
+            deck.hand = []
+            time.sleep(1)
+            Logic.req_bid(player)
+            
 
     def hold(player,score,deck):
         time.sleep(1)
@@ -125,18 +142,17 @@ class Logic:
                 print(f"player funds = {player.funds} as reward was {reward}")
                 Logic.req_bid(player)
             else:
-                time.sleep(2)
-                print("Dealers hand......")
                 Logic.dealershand(player,score,deck)
     
     def dealershand(player,score,deck):
         dealer = Player(None,funds = 1000)
         dealers_deck = Deck()
-        print(f"Your current score to be beaten {score}")
-        time.sleep(1) 
+        time.sleep(1)
         print(bl)
+        time.sleep(1)
         dealers_deck.double()   
         Graphics(dealers_deck.hand)
+        time.sleep(1)
         print(f"score: {dealers_deck.score()}")
         while True:
             time.sleep(1)
@@ -150,7 +166,7 @@ class Logic:
                 print("Dealer Sticks")
                 time.sleep(2)
                 break
-        time.sleep(2)
+        time.sleep(1)
         if dealers_deck.score() < score:
             if score <= 21:
                 print(f"Your hand of {score} beats the house's hand of {dealers_deck.score()}")
